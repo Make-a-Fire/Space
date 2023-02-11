@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 10.5
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -4585,8 +4585,8 @@ TextureImporter:
       WorldMap-C_203: 1026748369
       WorldMap-C_55: -1799096856
       WorldMap-C_33: 576749443
-      WorldMap-C_134: 969650830
       WorldMap-C_0: -447743499
+      WorldMap-C_134: 969650830
       WorldMap-C_74: -657205741
       WorldMap-C_190: -548818617
       WorldMap-C_19: -1433826941
@@ -4613,8 +4613,8 @@ TextureImporter:
       WorldMap-C_105: -264677524
       WorldMap-C_102: 1389685966
       WorldMap-C_68: -1496099330
-      WorldMap-C_173: -2145010670
       WorldMap-C_159: 118611761
+      WorldMap-C_173: -2145010670
       WorldMap-C_10: -429958270
       WorldMap-C_183: 318652400
       WorldMap-C_206: -1307778458
