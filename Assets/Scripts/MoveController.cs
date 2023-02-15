@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MoveController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MoveController : MonoBehaviour
     private RaycastHit2D hit;
     public Vector2 direction;
     public Vector2 origin;
+    public float anim_speed = 0.5f;
 
 
 
@@ -39,6 +41,7 @@ public class MoveController : MonoBehaviour
         PlayerMove();
 
         RayCaster();
+
     }
 
     private void PlayerMove()
@@ -49,29 +52,33 @@ public class MoveController : MonoBehaviour
         {
             playerAnim.SetFloat("X", 1f);
             playerAnim.SetFloat("Y", 0f);
+            playerAnim.SetFloat("Speed", anim_speed);
             direction = new Vector2(1, 0);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
             playerAnim.SetFloat("X", -1f);
             playerAnim.SetFloat("Y", 0f);
+            playerAnim.SetFloat("Speed", anim_speed);
             direction = new Vector2(-1, 0);
         }
         else if (Input.GetAxisRaw("Vertical") > 0)
         {
             playerAnim.SetFloat("X", 0f);
             playerAnim.SetFloat("Y", 1f);
+            playerAnim.SetFloat("Speed", anim_speed);
             direction = new Vector2(0, 1);
         }
         else if (Input.GetAxisRaw("Vertical") < 0)
         {
             playerAnim.SetFloat("X", 0f);
             playerAnim.SetFloat("Y", -1f);
+            playerAnim.SetFloat("Speed", anim_speed);
             direction = new Vector2(0, -1);
         }
         else
         {
-            //if(playerAnim.GetFloat("X") == 1f && playerAnim.GetFloat("Y")==0f) ;
+            playerAnim.SetFloat("Speed", 0f);
         }
     }
 
@@ -83,10 +90,18 @@ public class MoveController : MonoBehaviour
         Debug.DrawRay(origin, direction, Color.blue, 1.0f);
         if (hit.collider!=null)
         {
-            Debug.Log("入室しますか？");
-            Debug.Log(origin);
+            //Debug.Log("入室しますか？");
+            //Debug.Log(origin);
             HouseManager.instance.EnterHouse();
             //Debug.Log(direction);
         }
+    }
+
+    private string objName;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        objName = collision.gameObject.name;
+        Debug.Log(objName);
+        Debug.Log("当たった!");
     }
 }
