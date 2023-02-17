@@ -6,13 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 7024b1acd842da54aa21efd66274b059
+  - enabled: 1
+    path: Assets/Scenes/ChangeCharacter.unity
+    guid: a79ac23f19b9e86438b0f22fa98b9b46
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Room.unity
     guid: ec3360ce7cb4e434694005e55b16f23f
-  - enabled: 1
-    path: Assets/Scenes/ChangeCharacter.unity
-    guid: a79ac23f19b9e86438b0f22fa98b9b46
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: bd0d151ca68d69e49a08aeb4a4283a7d, type: 2}
