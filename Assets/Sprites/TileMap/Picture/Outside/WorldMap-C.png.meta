@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -4585,8 +4585,8 @@ TextureImporter:
       WorldMap-C_203: 1026748369
       WorldMap-C_55: -1799096856
       WorldMap-C_33: 576749443
-      WorldMap-C_0: -447743499
       WorldMap-C_134: 969650830
+      WorldMap-C_0: -447743499
       WorldMap-C_74: -657205741
       WorldMap-C_190: -548818617
       WorldMap-C_19: -1433826941
@@ -4613,8 +4613,8 @@ TextureImporter:
       WorldMap-C_105: -264677524
       WorldMap-C_102: 1389685966
       WorldMap-C_68: -1496099330
-      WorldMap-C_173: -2145010670
       WorldMap-C_159: 118611761
+      WorldMap-C_173: -2145010670
       WorldMap-C_183: 318652400
       WorldMap-C_206: -1307778458
       WorldMap-C_186: -1087900800

@@ -12,7 +12,11 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
+<<<<<<< HEAD
   companyName: Make a Fire
+=======
+  companyName: DefaultCompany
+>>>>>>> develop
   productName: PixelTown
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
