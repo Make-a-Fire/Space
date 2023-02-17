@@ -17,6 +17,7 @@ public class MoveController : MonoBehaviour
     public Vector2 direction;
     public Vector2 origin;
     public float anim_speed = 0.5f;
+    public GameObject entercheck;
 
 
 
@@ -58,6 +59,7 @@ public class MoveController : MonoBehaviour
         {
             instance = this;
         }
+        entercheck.SetActive(false);
     }
 
     // Update is called once per frame
@@ -127,7 +129,10 @@ public class MoveController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         objName = collision.gameObject.name;
+        if (objName == "house")
+        {
+            Debug.Log("当たった!");
+        }
         Debug.Log(objName);
-        Debug.Log("当たった!");
     }
 }
