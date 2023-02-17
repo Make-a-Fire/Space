@@ -12,6 +12,7 @@ public class Student_man : MonoBehaviour
     {
         PlayerPrefs.SetString("player_character", "Assets/Sprites/Character/man.png");
         PlayerPrefs.SetString("player_character_anim", "Assets/Animations/student_m.overrideController");
+        PlayerPrefs.SetInt("isLogin", 1);
         if (!firstPush)
         {
             fade.StartFadeOut();

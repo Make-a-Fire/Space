@@ -12,6 +12,7 @@ public class StartButton : MonoBehaviour
     {
         PlayerPrefs.SetString("player_character", "Assets/Sprites/Character/man01.png");
         PlayerPrefs.SetString("player_character_anim", "Assets/Animations/Player.controller");
+        PlayerPrefs.SetInt("isLogin", 1);
         if (!firstPush)
         {
             fade.StartFadeOut();
