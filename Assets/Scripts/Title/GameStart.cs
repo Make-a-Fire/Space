@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartButton : MonoBehaviour
+public class GameStart : MonoBehaviour
 {
     [Header("フェード")] public FadeImage fade;
     private bool firstPush = false;
     private bool goNextScene = false;
-    public void PressStart()
+    public void StartGame()
     {
-        PlayerPrefs.SetString("player_character", "Assets/Sprites/Character/man01.png");
-        PlayerPrefs.SetString("player_character_anim", "Assets/Animations/Player.controller");
         if (!firstPush)
         {
             fade.StartFadeOut();
-            firstPush = true;
+            firstPush= true;
         }
     }
 
@@ -24,8 +22,8 @@ public class StartButton : MonoBehaviour
         //フェードアウトの完了を監視
         if (!goNextScene && fade.IsFadeOutComplete())
         {
-            SceneManager.LoadScene("Main");
-            goNextScene = true;
+            SceneManager.LoadScene("ChangeCharacter");
+            goNextScene= true;
         }
     }
 }
