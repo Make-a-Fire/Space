@@ -17,5 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room.unity
     guid: ec3360ce7cb4e434694005e55b16f23f
+  - enabled: 1
+    path: Assets/Scenes/house.unity
+    guid: 75b1454b7004be64aa758ecae095bd3e
+  - enabled: 1
+    path: Assets/Scenes/library.unity
+    guid: e1fad6ac8966a8a4d82876d305b4087e
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: bd0d151ca68d69e49a08aeb4a4283a7d, type: 2}
