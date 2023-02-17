@@ -27,10 +27,22 @@ public class MoveController : MonoBehaviour
     private Animator playerAnim;
 
     public Rigidbody2D rb;
+    private Transform playerLocate;
+    private float player_x;
+    private float player_y;
+    private float player_z;
 
     // Start is called before the first frame update
     void Start()
     {
+        //キャラクターの初期位置
+        player_x = PlayerPrefs.GetFloat("player_x", 0);
+        player_y = PlayerPrefs.GetFloat("player_y", 0);
+        player_z = PlayerPrefs.GetFloat("player_z", 0);
+        playerLocate = GetComponent<Transform>();
+        playerLocate.position= new Vector3(player_x,player_y,player_z);
+
+        //アニメーション、プレイキャラクターの設定
         var player_character = PlayerPrefs.GetString("player_character", null);
         var player_character_anim = PlayerPrefs.GetString("player_character_anim", null);
         Addressables.LoadAssetAsync<Sprite>(player_character).Completed += sprite => {
@@ -41,6 +53,7 @@ public class MoveController : MonoBehaviour
             Animator anim = GetComponent<Animator>();
             anim.runtimeAnimatorController = Instantiate(RuntimeAnimatorController.Result);
         };
+
         if (instance == null)
         {
             instance = this;

@@ -8,6 +8,7 @@ public class GameStart : MonoBehaviour
     [Header("フェード")] public FadeImage fade;
     private bool firstPush = false;
     private bool goNextScene = false;
+    private int islogin;
     public void StartGame()
     {
         if (!firstPush)
@@ -22,7 +23,15 @@ public class GameStart : MonoBehaviour
         //フェードアウトの完了を監視
         if (!goNextScene && fade.IsFadeOutComplete())
         {
-            SceneManager.LoadScene("ChangeCharacter");
+            islogin = PlayerPrefs.GetInt("isLogin", 0);
+            if (islogin == 0 )
+            {
+                SceneManager.LoadScene("ChangeCharacter");
+            }
+            else
+            {
+                SceneManager.LoadScene("Main");
+            }     
             goNextScene= true;
         }
     }

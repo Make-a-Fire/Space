@@ -10,6 +10,7 @@ public class CanvasController_main : MonoBehaviour
     private bool goNextScene = false;
     public GameObject canvas_object;
     private bool check;
+    public SaveData save;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class CanvasController_main : MonoBehaviour
         if (!firstPush)
         {
             canvas_object.SetActive(false);
+            save.Savedata();
             fade.StartFadeOut();
             firstPush = true;
         }
