@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
-public class moveController_library : MonoBehaviour
+public class MoveController_house : MonoBehaviour
 {
     public static MoveController instance;
 
@@ -16,14 +15,12 @@ public class moveController_library : MonoBehaviour
     public Vector2 origin;
     public float anim_speed = 0.5f;
 
-
-
-    [SerializeField, Tooltip("移動スピード")]
-    private int moveSpeed;
-
     [Header("フェード")] public FadeImage fade;
     private bool firstPush2 = false;
     private bool goNextScene = false;
+
+    [SerializeField, Tooltip("移動スピード")]
+    private int moveSpeed;
 
     [SerializeField]
     private Animator playerAnim;
@@ -43,7 +40,7 @@ public class moveController_library : MonoBehaviour
         player_z = PlayerPrefs.GetFloat("player_z", 0);*/
         playerLocate = GetComponent<Transform>();
         //playerLocate.position = new Vector3(player_x, player_y, player_z);
-        playerLocate.position = new Vector3(0.5f, 5f, 0);
+        playerLocate.position = new Vector3(7.46f, -8.88f, 0);
 
         //アニメーション、プレイキャラクターの設定
         var player_character = PlayerPrefs.GetString("player_character", null);
@@ -68,8 +65,7 @@ public class moveController_library : MonoBehaviour
     {
         PlayerMove();
 
-        RayCaster();
-
+        //RayCaster();
     }
 
 
@@ -132,14 +128,12 @@ public class moveController_library : MonoBehaviour
         objName = collision.gameObject.name;
         if (objName == "Door")
         {
-            if (!firstPush2 && fade.IsFadeInComplete())
+            if (!firstPush2)
             {
-                Debug.Log("hit");
                 fade.StartFadeOut();
                 firstPush2 = true;
                 PlayerPrefs.SetString("nextScene", "Main");
             }
         }
-        Debug.Log(objName);
     }
 }

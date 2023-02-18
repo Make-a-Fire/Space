@@ -11,6 +11,7 @@ public class CanvasController_main : MonoBehaviour
     public GameObject canvas_object;
     private bool check;
     public SaveData save;
+    private string nextscene;
 
     void Start()
     {
@@ -28,7 +29,8 @@ public class CanvasController_main : MonoBehaviour
         }
         if (!goNextScene && fade.IsFadeOutComplete())
         {
-            SceneManager.LoadScene("ChangeCharacter");
+            nextscene = PlayerPrefs.GetString("nextScene");
+            SceneManager.LoadScene(nextscene);
             goNextScene = true;
         }
     }
@@ -37,6 +39,7 @@ public class CanvasController_main : MonoBehaviour
     {
         if (!firstPush)
         {
+            PlayerPrefs.SetString("nestScene", "ChangeCharacter");
             canvas_object.SetActive(false);
             save.Savedata();
             fade.StartFadeOut();
