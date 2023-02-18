@@ -140,6 +140,5 @@ public class moveController_library : MonoBehaviour
                 PlayerPrefs.SetString("nextScene", "Main");
             }
         }
-        Debug.Log(objName);
     }
 }
