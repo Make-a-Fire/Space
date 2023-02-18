@@ -5,6 +5,7 @@ using UnityEngine.TextCore.Text;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
+using Photon.Realtime;
 
 
 public class MoveController : MonoBehaviour
@@ -19,7 +20,9 @@ public class MoveController : MonoBehaviour
     public float anim_speed = 0.5f;
     public GameObject entercheck;
 
-
+    [Header("フェード")] public FadeImage fade;
+    private bool firstPush = false;
+    private bool goNextScene = false;
 
     [SerializeField,Tooltip("移動スピード")]
     private int moveSpeed;
@@ -32,6 +35,9 @@ public class MoveController : MonoBehaviour
     private float player_x;
     private float player_y;
     private float player_z;
+
+    private Transform playerloc;
+    public GameObject player2;
 
     // Start is called before the first frame update
     void Start()
@@ -129,10 +135,35 @@ public class MoveController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         objName = collision.gameObject.name;
-        if (objName == "house")
+        if (objName == "Door")
         {
-            Debug.Log("当たった!");
+            if (!firstPush)
+            {
+                player2 = GameObject.Find("Player");
+                playerloc = player2.GetComponent<Transform>();
+                Vector3 loc = playerloc.position;
+                PlayerPrefs.SetFloat("player_x", loc.x);
+                PlayerPrefs.SetFloat("player_y", loc.y);
+                PlayerPrefs.SetFloat("player_z", loc.z);
+                fade.StartFadeOut();
+                firstPush = true;
+                PlayerPrefs.SetString("nextScene", "library");
+            }
         }
-        Debug.Log(objName);
+        if (objName == "Door2")
+        {
+            if (!firstPush)
+            {
+                player2 = GameObject.Find("Player");
+                playerloc = player2.GetComponent<Transform>();
+                Vector3 loc = playerloc.position;
+                PlayerPrefs.SetFloat("player_x", loc.x);
+                PlayerPrefs.SetFloat("player_y", loc.y);
+                PlayerPrefs.SetFloat("player_z", loc.z);
+                fade.StartFadeOut();
+                firstPush = true;
+                PlayerPrefs.SetString("nextScene", "house");
+            }
+        }
     }
 }
