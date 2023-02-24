@@ -39,11 +39,12 @@ public class CanvasController_main : MonoBehaviour
     {
         if (!firstPush)
         {
-            PlayerPrefs.SetString("nestScene", "ChangeCharacter");
+            PlayerPrefs.SetString("nextScene", "ChangeCharacter");
             canvas_object.SetActive(false);
             save.Savedata();
             fade.StartFadeOut();
             firstPush = true;
+            //PlayerPrefs.SetString("nextScene", "Main");
         }
     }
 }
