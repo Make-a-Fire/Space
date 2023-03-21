@@ -39,6 +39,10 @@ public class MoveController : MonoBehaviour
     private Transform playerloc;
     public GameObject player2;
 
+
+    private Vector2 begin_pos = Vector2.zero;
+    private Vector2 now_pos = Vector2.zero;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,40 +84,106 @@ public class MoveController : MonoBehaviour
 
     private void PlayerMove()
     {
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * moveSpeed;
 
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        //まうすでの入力
+        if (Input.GetMouseButtonDown(0))
         {
-            playerAnim.SetFloat("X", 1f);
-            playerAnim.SetFloat("Y", 0f);
-            playerAnim.SetFloat("Speed", anim_speed);
-            direction = new Vector2(1, 0);
+            begin_pos = Input.mousePosition;
         }
-        else if (Input.GetAxisRaw("Horizontal") < 0)
+
+        if (Input.GetMouseButton(0))
         {
-            playerAnim.SetFloat("X", -1f);
-            playerAnim.SetFloat("Y", 0f);
-            playerAnim.SetFloat("Speed", anim_speed);
-            direction = new Vector2(-1, 0);
+            now_pos = Input.mousePosition;
         }
-        else if (Input.GetAxisRaw("Vertical") > 0)
+
+        if (Input.GetMouseButtonUp(0))
         {
-            playerAnim.SetFloat("X", 0f);
-            playerAnim.SetFloat("Y", 1f);
-            playerAnim.SetFloat("Speed", anim_speed);
-            direction = new Vector2(0, 1);
+            begin_pos = Vector2.zero;
+            now_pos = Vector2.zero;
         }
-        else if (Input.GetAxisRaw("Vertical") < 0)
+
+        if (Input.touchCount > 0)
         {
-            playerAnim.SetFloat("X", 0f);
-            playerAnim.SetFloat("Y", -1f);
-            playerAnim.SetFloat("Speed", anim_speed);
-            direction = new Vector2(0, -1);
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                begin_pos = touch.position;
+            }
+
+            if (Input.touchCount > 0)
+            {
+                now_pos = touch.position;
+            }
+            if (touch.phase == TouchPhase.Ended)
+            {
+                begin_pos = Vector2.zero;
+                now_pos = Vector2.zero;
+            }
         }
-        else
+        //スマホでの入力
+        
+
+        
+        
+
+
+
+        
+
+
+        Vector2 dist = now_pos - begin_pos;
+
+        bool Moving = false;
+        if (Mathf.Abs(dist.x) > Mathf.Abs(dist.y) || Input.GetAxisRaw("Horizontal") >0 || Input.GetAxisRaw("Horizontal") < 0)//横方向の入力の方が上方向よりも大きかったら
+        {
+            if (Input.GetAxisRaw("Horizontal") > 0 || dist.x > 0)
+            {
+                playerAnim.SetFloat("X", 1f);
+                playerAnim.SetFloat("Y", 0f);
+                playerAnim.SetFloat("Speed", anim_speed);
+                direction = new Vector2(1, 0);
+
+                Moving = true;
+            }
+            if (Input.GetAxisRaw("Horizontal") < 0 || dist.x < 0)
+            {
+                playerAnim.SetFloat("X", -1f);
+                playerAnim.SetFloat("Y", 0f);
+                playerAnim.SetFloat("Speed", anim_speed);
+                direction = new Vector2(-1, 0);
+
+                Moving = true;
+            }
+        }
+        if(Mathf.Abs(dist.x) <= Mathf.Abs(dist.y) || Input.GetAxisRaw("Vertical") >0 || Input.GetAxisRaw("Vertical") < 0)
+        {
+            if (Input.GetAxisRaw("Vertical") > 0 || dist.y > 0)
+            {
+                playerAnim.SetFloat("X", 0f);
+                playerAnim.SetFloat("Y", 1f);
+                playerAnim.SetFloat("Speed", anim_speed);
+                direction = new Vector2(0, 1);
+
+                Moving = true;
+            }
+            if (Input.GetAxisRaw("Vertical") < 0 || dist.y < 0)
+            {
+                playerAnim.SetFloat("X", 0f);
+                playerAnim.SetFloat("Y", -1f);
+                playerAnim.SetFloat("Speed", anim_speed);
+                direction = new Vector2(0, -1);
+
+                Moving = true;
+            }
+        }
+        if(Moving==false)
         {
             playerAnim.SetFloat("Speed", 0f);
+            direction = new Vector2(0, 0);
         }
+
+        rb.velocity = direction.normalized * moveSpeed;
     }
 
 
